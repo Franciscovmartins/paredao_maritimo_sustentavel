@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paredão Marítimo Sustentável | UA</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ua-blue: #005f9e;
+            --ua-dark: #003f69;
+            --ocean-light: #eef7fc;
+            --eco-green: #28a745;
+            --text-main: #343a40;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-main);
+            background-color: #fcfcfc;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- ALTERAÇÕES NAVBAR --- */
+        .navbar {
+            background-color: #ffffff !important; /* Fundo Branco */
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* Cor das letras da navbar */
+        .navbar-brand, .nav-link {
+            color: var(--ua-blue) !important; /* Azul UA */
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        /* Cor ao passar o rato ou item ativo */
+        .nav-link:hover, .nav-link.active {
+            color: var(--ua-dark) !important; /* Azul mais escuro */
+        }
+        
+        /* Ajuste do botão toggler para mobile (para ficar visível no branco) */
+        .navbar-toggler {
+            border-color: var(--ua-blue);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 95, 158, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Cores Personalizadas */
+        .text-ua-blue { color: var(--ua-blue) !important; }
+        .bg-ua-blue { background-color: var(--ua-blue) !important; }
+
+        /* Hero Section com Parallax - FUNDO MAIS CLARO */
+        .hero-section {
+            /* Alterado o gradiente para branco para clarear a imagem */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.65)), url('https://www.surf-forecast.com/system/images/5176/large/Praiada-Barra.jpg?1337176609');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efeito Parallax */
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ua-dark); /* Texto alterado para escuro para contraste */
+            text-align: center;
+            position: relative;
+            padding-top: 80px; /* Compensar a navbar fixa */
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        /* Botões */
+        .btn-custom {
+            background-color: var(--ua-blue); /* Botão azul para contraste no fundo claro */
+            color: white;
+            font-weight: 700;
+            padding: 12px 35px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 95, 158, 0.3);
+        }
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            background-color: var(--ua-dark);
+            box-shadow: 0 8px 25px rgba(0, 95, 158, 0.4);
+            color: white;
+        }
+
+        /* Secções Gerais */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 3.5rem;
+        }
+        .section-header h2 {
+            font-weight: 800;
+            color: var(--ua-dark);
+            position: relative;
+            display: inline-block;
+        }
+        /* Linha decorativa abaixo dos títulos */
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--ua-blue);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Cards Gerais */
+        .card {
+            border: none;
+            border-radius: 16px;
+            background: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 95, 158, 0.1);
+        }
+
+        /* Imagens Tecnológicas */
+        .img-tech {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Cartões de ODS (Impacto) */
+        .ods-card {
+            border-bottom: 4px solid transparent;
+        }
+        .ods-card:hover {
+            border-bottom-color: var(--ua-blue);
+        }
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--ocean-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--ua-blue);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+        .card:hover .icon-circle {
+            background-color: var(--ua-blue);
+            color: white;
+        }
+
+        /* Equipa */
+        .team-member-img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            filter: grayscale(100%); /* Começa a preto e branco */
+        }
+        .team-member-card:hover .team-member-img {
+            filter: grayscale(0%); /* Cor ao passar o rato */
+            transform: scale(1.05);
+            border-color: var(--ua-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+        }
+        footer a:hover {
+            color: white !important;
+            padding-left: 5px;
+            transition: 0.2s;
+        }
+
+        /* Ajustes de Implementação */
+        .stat-card {
+            background: var(--ocean-light);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(0, 95, 158, 0.1);
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar-example" data-bs-offset="100">
+
+    <nav id="navbar-example" class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+                <img src="Logo simple.png" alt="Logo S.E.A Wall" style="height: 30px; width: auto;">
+                S.E.A Wall
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#inicio">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#solucao">Solução</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tecnologias">Tecnologias</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#impacto">Impacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#implementacao">Implementação</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#consorcio">Consórcio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#equipa">Equipa</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="inicio" class="hero-section">
+        <div class="container hero-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <img src="Logo.png" alt="S.E.A. Wall - Sustainable Energy & Aqua" class="img-fluid mb-5" style="max-width: 64%; height: auto;">
+                    
+                    <div>
+                        <a href="#sobre" class="btn btn-custom">Descobrir o Projeto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="sobre" class="bg-white">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">  
+                    <div class="position-relative">
+                        <img src="https://i.pinimg.com/736x/8c/db/fa/8cdbfa239a1d374e707fd83788d1dadf.jpg" class="img-fluid rounded-4 shadow-lg" alt="Paredão ao pôr do sol">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h6 class="text-uppercase text-ua-blue fw-bold mb-3 ls-1">Sobre o Projeto</h6>
+                    <h2 class="mb-4 fw-bold text-dark">Engenharia Mecânica ao serviço do Oceano</h2>
+                    
+                    <p class="text-secondary mb-4">
+                        Somos estudantes do Mestrado em Engenharia Mecânica da <strong>Universidade de Aveiro</strong>. No âmbito da unidade curricular de Seminários, unimos <em>big ideas</em> individuais para criar uma infraestrutura capaz de responder a desafios sociais, ambientais e energéticos.
+                    </p>
+                    <p class="text-secondary">
+                        O <strong>Paredão Marítimo Sustentável</strong> transcende a proteção costeira tradicional, atuando como uma central de recursos:
+                    </p>
+
+                    <ul class="list-group list-group-flush mt-4">
+                        <li class="list-group-item border-0 px-0 d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill text-warning me-3 fs-5"></i>
+                            <span>Geração de energia elétrica via ondas do mar.</span>
+                        </li>
+                        <li class="list-group-item border-0 px-0 d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill text-ua-blue me-3 fs-5"></i>
+                            <span>Dessalinização sustentável para água potável.</span>
+                        </li>
+                        <li class="list-group-item border-0 px-0 d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+                            <span>Proteção ativa contra a erosão costeira.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucao" style="background-color: var(--ocean-light);">
+        <div class="container">
+            <div class="text-center section-header">
+                <h2>A Nossa Solução</h2>
+                <p class="text-muted mt-3 max-w-700 mx-auto">Uma resposta integrada à escassez hídrica e à necessidade de energias limpas.</p>
+            </div>
+
+            <div class="row align-items-center g-5 mb-5">
+                <div class="col-md-6 order-md-2">
+                    <img src="https://www.innovationnewsnetwork.com/wp-content/uploads/2021/04/Pic2-BiMEP_Mutriku-Photo-credit-Tecnalia-696x392.jpg" class="img-fluid rounded-4 shadow" alt="Estrutura do Paredão">
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <h3 class="fw-bold mb-3 text-ua-blue">Simbiose Energética</h3>
+                    <p class="text-secondary mb-4">
+                        A crescente procura por sustentabilidade impulsionou tecnologias que aproveitam os recursos do oceano. O Paredão Marítimo Sustentável utiliza exclusivamente o movimento cinético das ondas para alimentar dois processos vitais simultaneamente.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-arrow-right-circle text-primary fs-4 me-2"></i>
+                            <span class="fw-bold text-dark">Energia Limpa</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-arrow-right-circle text-primary fs-4 me-2"></i>
+                            <span class="fw-bold text-dark">Água Potável</span>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            
+            <div class="row justify-content-center text-center mt-5">
+                <div class="col-lg-8">
+                    <div class="bg-white p-4 rounded-4 shadow-sm">
+                        <p class="mb-0 text-muted fst-italic">
+                            "Ao longo do projeto, analisamos tecnologias existentes para provar que a integração em paredões não é apenas teórica, mas uma solução viável e necessária para o futuro das cidades costeiras."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tecnologias">
+        <div class="container">
+            <div class="text-center section-header">
+                <h2>Tecnologias Integradas</h2>
+                <p class="text-muted">O estado da arte na conversão de energia das ondas e tratamento de água.</p>
+            </div>
+
+            <div class="row mb-5 justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card bg-ua-blue text-white shadow-lg border-0">
+                        <div class="card-body p-5 text-center position-relative overflow-hidden">
+                            <i class="bi bi-lightning-charge position-absolute top-0 start-0 opacity-25" style="font-size: 15rem; transform: translate(-30%, -30%);"></i>
+                            <h3 class="fw-bold mb-3 position-relative">Produção de Energia Elétrica</h3>
+                            <p class="card-text fs-5 opacity-90 position-relative">
+                                O oceano é uma bateria gigante. A nossa solução captura a energia cinética e potencial através do <strong>movimento das ondas</strong>, um recurso vasto e menos de 1% explorado atualmente.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm hover-elevate">
+                        <div class="p-3">
+                            <img src="https://static.wixstatic.com/media/d0f4b6_be84729ac14548a38be4d9c14721d9c6~mv2.png/v1/fill/w_604,h_396,al_c,q_85,enc_avif,quality_auto/d0f4b6_be84729ac14548a38be4d9c14721d9c6~mv2.png" class="img-tech" alt="CAOs">
+                        </div>
+                        <div class="card-body px-4 pb-4">
+                            <h4 class="fw-bold text-ua-blue mb-3">Coluna de Água Oscilante</h4>
+                            <p class="text-secondary small">
+                                Transforma o movimento vertical das ondas em energia pneumática e depois elétrica.
+                            </p>
+                            <div class="bg-light p-3 rounded border-start border-4 border-primary">
+                                <small><strong>Como funciona:</strong> A onda entra numa câmara de betão, forçando o ar a passar por uma turbina Wells (bidirecional). A compressão e descompressão cíclica geram eletricidade constante.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm hover-elevate">
+                        <div class="p-3">
+                            <img src="https://img.odcdn.com.br/wp-content/uploads/2024/08/eco-wave-powr-1920x1080.jpg" class="img-tech" alt="Flutuadores">
+                        </div>
+                        <div class="card-body px-4 pb-4">
+                            <h4 class="fw-bold text-ua-blue mb-3">Flutuadores Internos</h4>
+                            <p class="text-secondary small">
+                                Sistema mecânico direto que aproveita a elevação da onda.
+                            </p>
+                            <div class="bg-light p-3 rounded border-start border-4 border-primary">
+                                <small><strong>Como funciona:</strong> Flutuadores dentro do paredão sobem e descem com a maré. Este movimento linear aciona braços hidráulicos ou geradores lineares, convertendo a força bruta em eletricidade.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-5 justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card bg-success text-white shadow-lg border-0">
+                        <div class="card-body p-5 text-center position-relative overflow-hidden">
+                            <i class="bi bi-droplet-half position-absolute top-0 end-0 opacity-25" style="font-size: 15rem; transform: translate(30%, -30%);"></i>
+                            <h3 class="fw-bold mb-3 position-relative">Dessalinização da Água</h3>
+                            <p class="card-text fs-5 opacity-90 position-relative">
+                                Combatendo a escassez hídrica diretamente na fonte. Integramos o tratamento de água na estrutura de proteção, eliminando custos de transporte e aproveitando a energia gerada no local.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card h-100 shadow-sm">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="https://fonteval.com/wp-content/uploads/2024/01/osmose-inversa.jpeg" class="h-100 w-100 object-fit-cover rounded-start" alt="Osmose Inversa" style="min-height: 300px;">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body p-4 d-flex flex-column justify-content-center h-100">
+                                    <h4 class="fw-bold text-ua-blue">Osmose Inversa por Pressão</h4>
+                                    <p class="text-muted small">
+                                        A pressão hidráulica gerada pelas ondas é usada diretamente para bombear água do mar através de membranas semipermeáveis.
+                                    </p>
+                                    <ul class="list-unstyled small text-secondary mb-0">
+                                        <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i><strong>>99%</strong> de remoção de sal.</li>
+                                        <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>Pressão operativa: <strong>5 a 20 bar</strong>.</li>
+                                        <li><i class="bi bi-check2 text-success me-2"></i>Sem consumo externo de eletricidade da rede.</li>
+                                    </ul>
+                                </div>                           
+                            </div>
+                            <div class="p-4 bg-light rounded-3 border-start border-4 border-success">
+                                <p class="mb-0 small">
+                                    <strong class="text-dark">Como funciona:</strong> O sistema utiliza membranas semipermeáveis que separam os sais e impurezas da água do mar. A água é forçada a passar através de uma membrana sob alta pressão (gerada pelas ondas), deixando os sais para trás.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        </div>
+    </section>
+
+    <section id="impacto" class="bg-light">
+        <div class="container">
+            <div class="text-center section-header">
+                <h2>Impacto e Sustentabilidade</h2>
+                <p class="text-muted">Alinhamento direto com os Objetivos de Desenvolvimento Sustentável (ODS).</p>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card ods-card h-100 p-4 shadow-sm">
+                        <div class="icon-circle text-primary"><i class="bi bi-droplet-fill"></i></div>
+                        <h5 class="card-title fw-bold">Água Potável (ODS 6)</h5>
+                        <p class="card-text text-secondary small">
+                            Garante acesso a água potável através da dessalinização, melhorando a saúde pública e qualidade de vida.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card ods-card h-100 p-4 shadow-sm">
+                        <div class="icon-circle text-warning"><i class="bi bi-sun-fill"></i></div>
+                        <h5 class="card-title fw-bold">Energias Renováveis (ODS 7)</h5>
+                        <p class="card-text text-secondary small">
+                            Produção de energia limpa e previsível, reduzindo a dependência de combustíveis fósseis nas zonas costeiras.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card ods-card h-100 p-4 shadow-sm">
+                        <div class="icon-circle text-secondary"><i class="bi bi-gear-wide-connected"></i></div>
+                        <h5 class="card-title fw-bold">Inovação (ODS 9)</h5>
+                        <p class="card-text text-secondary small">
+                            Infraestrutura resiliente que combina engenharia civil, mecânica e ambiental num único sistema.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card ods-card h-100 p-4 shadow-sm">
+                        <div class="icon-circle text-success"><i class="bi bi-buildings-fill"></i></div>
+                        <h5 class="card-title fw-bold">Cidades Sustentáveis (ODS 11)</h5>
+                        <p class="card-text text-secondary small">
+                            Promove a autonomia local de recursos, apoiando o crescimento urbano equilibrado e seguro.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card ods-card h-100 p-4 shadow-sm">
+                        <div class="icon-circle text-danger"><i class="bi bi-thermometer-half"></i></div>
+                        <h5 class="card-title fw-bold">Ação Climática (ODS 13)</h5>
+                        <p class="card-text text-secondary small">
+                            Mitigação direta das alterações climáticas através da redução de emissões e proteção contra subida do nível do mar.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card ods-card h-100 p-4 shadow-sm">
+                        <div class="icon-circle text-info"><i class="bi bi-water"></i></div>
+                        <h5 class="card-title fw-bold">Vida na Água (ODS 14)</h5>
+                        <p class="card-text text-secondary small">
+                            Design ecológico com recifes artificiais e dispersão segura de salmoura para proteger a biodiversidade.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5 pt-5 border-top justify-content-center">
+                <div class="col-12 text-center mb-5">
+                    <h3 class="fw-bold text-ua-blue">Compromisso Ecológico Aprofundado</h3>
+                    <p class="text-muted mx-auto" style="max-width: 700px;">
+                        Estratégias de engenharia para mitigar riscos e proteger a biodiversidade marinha.
+                    </p>
+                </div>
+
+                <div class="col-lg-10">
+                    <div class="d-flex flex-column gap-4">
+
+                        <div class="card border-0 shadow-sm rounded-4">
+                            <div class="card-body p-4 d-flex align-items-start">
+                                <div class="me-4 d-none d-sm-flex align-items-center justify-content-center rounded-3 bg-primary bg-opacity-10 text-primary" style="width: 60px; height: 60px; flex-shrink: 0;">
+                                    <i class="bi bi-droplet-half fs-3"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-2">Gestão Avançada da Salmoura</h5>
+                                    <p class="text-secondary small mb-3">
+                                        O principal risco da osmose inversa é a descarga de água hipersalina, que sendo mais densa, pode depositar-se no fundo do mar e afetar a vida bentónica.
+                                    </p>
+                                    <div class="p-3 bg-light rounded-3 border-start border-4 border-primary">
+                                        <p class="mb-0 small">
+                                            <strong>Solução Técnica:</strong> Implementação de sistemas de difusores múltiplos com jatos de alta velocidade. Isto provoca uma mistura turbulenta imediata com a água do mar, diluindo a salinidade para níveis naturais num raio de poucos metros do ponto de descarga.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border-0 shadow-sm rounded-4">
+                            <div class="card-body p-4 d-flex align-items-start">
+                                <div class="me-4 d-none d-sm-flex align-items-center justify-content-center rounded-3 bg-success bg-opacity-10 text-success" style="width: 60px; height: 60px; flex-shrink: 0;">
+                                    <i class="bi bi-layers-half fs-3"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-2">Integridade e Dinâmica Costeira</h5>
+                                    <p class="text-secondary small mb-3">
+                                        Paredões tradicionais podem refletir a energia das ondas, agravando a erosão na base da estrutura e impedindo a movimentação natural das areias.
+                                    </p>
+                                    <div class="p-3 bg-light rounded-3 border-start border-4 border-success">
+                                        <p class="mb-0 small">
+                                            <strong>Solução Técnica:</strong> O design inclui uma base semi-porosa baseada em modelagem hidrodinâmica, permitindo a passagem de sedimentos. Além disso, a superfície exterior é texturizada (biomimética) para funcionar como recife artificial, promovendo a fixação de bivalves e algas.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border-0 shadow-sm rounded-4">
+                            <div class="card-body p-4 d-flex align-items-start">
+                                <div class="me-4 d-none d-sm-flex align-items-center justify-content-center rounded-3 bg-warning bg-opacity-10 text-warning" style="width: 60px; height: 60px; flex-shrink: 0;">
+                                    <i class="bi bi-soundwave fs-3"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-2">Operação Silenciosa</h5>
+                                    <p class="text-secondary small mb-3">
+                                        O ruído subaquático gerado por turbinas e bombas pode interferir na comunicação e orientação de mamíferos marinhos e peixes.
+                                    </p>
+                                    <div class="p-3 bg-light rounded-3 border-start border-4 border-warning">
+                                        <p class="mb-0 small">
+                                            <strong>Solução Técnica:</strong> Encapsulamento total dos componentes mecânicos (geradores e bombas de alta pressão) no interior da estrutura maciça de betão, utilizando isolamento acústico industrial para eliminar a propagação de vibrações para a coluna de água.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="implementacao">
+        <div class="container">
+            <div class="text-center section-header">
+                <h2>Implementação Local</h2>
+                <p class="text-muted fw-bold">Caso de Estudo: Zambujeira do Mar</p>
+                <p class="mx-auto" style="max-width: 800px;">
+                    O projeto propõe um modelo de autonomia hídrica e energética para mitigar a <strong>Escassez Hídrica Sazonal</strong> induzida pelo turismo na Costa Alentejana. A escolha recai sobre a Zambujeira do Mar devido ao seu elevado potencial ondomotriz e necessidade de robustez energética.
+                </p>
+            </div>
+            
+            <div class="row mb-5 justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow border-0 overflow-hidden">
+                        <div class="card-header bg-ua-blue text-white text-center py-3">
+                            <h5 class="mb-0 fw-bold"><i class="bi bi-sliders me-2"></i>Dimensionamento do Projeto</h5>
+                        </div>
+                        <div class="card-body p-4 p-lg-5 text-center">
+                            <div class="row divide-vertical">
+                                <div class="col-md-4 mb-4 mb-md-0 position-relative">
+                                    <h2 class="display-4 fw-bold text-dark mb-0">10k</h2>
+                                    <p class="text-uppercase fw-bold text-muted small letter-spacing-2">Habitantes</p>
+                                    <div class="d-none d-md-block position-absolute top-50 end-0 translate-middle-y border-end h-50"></div>
+                                </div>
+                                <div class="col-md-4 mb-4 mb-md-0 position-relative">
+                                    <h2 class="display-4 fw-bold text-primary mb-0">1.5k</h2>
+                                    <p class="text-uppercase fw-bold text-muted small letter-spacing-2">m³/dia Água</p>
+                                    <div class="d-none d-md-block position-absolute top-50 end-0 translate-middle-y border-end h-50"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="display-4 fw-bold text-success mb-0">250</h2>
+                                    <p class="text-uppercase fw-bold text-muted small letter-spacing-2">kW Potência</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm bg-white p-4">
+                        <h5 class="card-title fw-bold mb-4 border-bottom pb-2"><i class="bi bi-bar-chart-fill me-2 text-primary"></i>Dados Ambientais (IPMA)</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item px-0 py-3"><i class="bi bi-check-circle-fill text-success me-3"></i>Potência de onda: <strong>60 a 90 kW/m</strong> (Inverno).</li>
+                            <li class="list-group-item px-0 py-3"><i class="bi bi-check-circle-fill text-success me-3"></i>Batimetria favorável para fixação da estrutura.</li>
+                            <li class="list-group-item px-0 py-3"><i class="bi bi-check-circle-fill text-success me-3"></i>Monitorização contínua de altura significativa.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm bg-white p-4">
+                        <h5 class="fw-bold mb-4 border-bottom pb-2"><i class="bi bi-file-earmark-text-fill me-2 text-warning"></i>Licenciamento & Legal</h5>
+                        <div class="d-flex flex-column gap-3">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-building-fill-check text-ua-blue fs-4 me-3"></i>
+                                <div>
+                                    <strong>APA (Ambiente)</strong>
+                                    <p class="small text-muted mb-0">Declaração de Impacte Ambiental (DIA) e Recursos Hídricos.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-tree-fill text-success fs-4 me-3"></i>
+                                <div>
+                                    <strong>ICNF (Natureza)</strong>
+                                    <p class="small text-muted mb-0">Parecer para Rede Natura 2000 e PNSACV.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-shield-fill-check text-secondary fs-4 me-3"></i>
+                                <div>
+                                    <strong>DGRM (Mar)</strong>
+                                    <p class="small text-muted mb-0">Licença de construção no Domínio Público Marítimo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="consorcio" class="bg-ua-dark text-white">
+        <div class="container py-4">
+            <div class="text-center section-header mb-5">
+                <i class="bi bi-diagram-3-fill display-4 mb-3 d-block text-info"></i>
+                <h2>Consórcio e Financiamento</h2>
+                <p class="lead w-75 mx-auto opacity-75">
+                    A viabilidade do Paredão Marítimo Sustentável é garantida através de uma rede estratégica de parceiros académicos e programas de financiamento europeus e nacionais.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 text-dark border-0 shadow rounded-3 overflow-hidden">
+                        <div class="card-body pt-5 pb-4 px-4 text-center position-relative">
+                            <div class="position-absolute top-0 start-0 w-100 h-1 bg-primary" style="height: 6px;"></div>
+                            <h5 class="fw-bold mb-3">Portugal 2030</h5>
+                            <p class="small text-muted">
+                                Eixo "Sustentabilidade e Ação Climática". Financiamento de infraestruturas de adaptação costeira.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 text-dark border-0 shadow rounded-3 overflow-hidden">
+                        <div class="card-body pt-5 pb-4 px-4 text-center position-relative">
+                            <div class="position-absolute top-0 start-0 w-100 bg-success" style="height: 6px;"></div>
+                            <h5 class="fw-bold mb-3">Fundo Ambiental</h5>
+                            <p class="small text-muted">
+                                Apoio nacional para preservação de recursos hídricos e combate à seca no Alentejo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 text-dark border-0 shadow rounded-3 overflow-hidden">
+                        <div class="card-body pt-5 pb-4 px-4 text-center position-relative">
+                            <div class="position-absolute top-0 start-0 w-100 bg-info" style="height: 6px;"></div>
+                            <h5 class="fw-bold mb-3">Horizonte Europa</h5>
+                            <p class="small text-muted">
+                                Componente de Investigação & Desenvolvimento (I&D) para validação tecnológica da UA.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 text-dark border-0 shadow rounded-3 overflow-hidden">
+                        <div class="card-body pt-5 pb-4 px-4 text-center position-relative">
+                            <div class="position-absolute top-0 start-0 w-100 bg-warning" style="height: 6px;"></div>
+                            <h5 class="fw-bold mb-3">Transição Justa</h5>
+                            <p class="small text-muted">
+                                Geração de emprego local qualificado e economia azul na região costeira.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="equipa" class="bg-white">
+        <div class="container">
+            <div class="text-center section-header">
+                <h2>A Nossa Equipa</h2>
+            </div>
+
+            <div class="row justify-content-center gy-5">
+                <div class="col-6 col-md-4 col-lg-2 text-center team-member-card">
+                    <div class="mb-3">
+                        <img src="Andre Vieira.jpg" alt="André Vieira" class="rounded-circle team-member-img">
+                    </div>
+                    <h6 class="fw-bold mb-1">André Vieira</h6>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 text-center team-member-card">
+                    <div class="mb-3">
+                        <img src="Francisco Martins.JPG" alt="Francisco Martins" class="rounded-circle team-member-img">
+                    </div>
+                    <h6 class="fw-bold mb-1">Francisco Martins</h6>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 text-center team-member-card">
+                    <div class="mb-3">
+                        <img src="Gonçalo Pereira.png" alt="Gonçalo Pereira" class="rounded-circle team-member-img">
+                    </div>
+                    <h6 class="fw-bold mb-1">Gonçalo Pereira</h6>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 text-center team-member-card">
+                    <div class="mb-3">
+                        <img src="Xavier.jpg" alt="Xavier Morais" class="rounded-circle team-member-img">
+                    </div>
+                    <h6 class="fw-bold mb-1">Xavier Morais</h6>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 text-center team-member-card">
+                    <div class="mb-3">
+                        <img src="Oscar.jpg" alt="Oscar" class="rounded-circle team-member-img">
+                    </div>
+                    <h6 class="fw-bold mb-1">Óscar Cuanga</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto" class="text-white pt-5 pb-3" style="background-color: #0f171e;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 mb-4">
+                    <h5 class="text-uppercase fw-bold mb-3 text-ua-blue">Paredão Sustentável</h5>
+                    <p class="small text-white-50 w-75">
+                        Um projeto académico inovador desenvolvido na Universidade de Aveiro, focado em criar um futuro mais limpo, seguro e resiliente para as comunidades costeiras.
+                    </p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="text-uppercase fw-bold mb-3 text-white">Navegação</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#sobre" class="text-white-50 text-decoration-none">Sobre Nós</a></li>
+                        <li class="mb-2"><a href="#tecnologias" class="text-white-50 text-decoration-none">Tecnologias</a></li>
+                        <li class="mb-2"><a href="#impacto" class="text-white-50 text-decoration-none">ODS & Impacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase fw-bold mb-3 text-white">Contacto</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-3 d-flex"><i class="bi bi-geo-alt me-3 text-ua-blue"></i> Universidade de Aveiro, Campus de Santiago, 3810-193 Aveiro</li>
+                        <li class="mb-3 d-flex"><i class="bi bi-envelope me-3 text-ua-blue"></i> s.e.a.wall@ua.pt</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 mt-4">
+            <div class="text-center text-white-50 small mt-3">
+                <p>&copy; 2025 Paredão Marítimo Sustentável. Desenvolvido no âmbito do Mestrado em Engenharia Mecânica | UA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
